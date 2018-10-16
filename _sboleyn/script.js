@@ -1,9 +1,30 @@
-request("https://en.wikipedia.org/wiki/Kudos_(granola_bar)", function(error, response, body) {
+var queryURL = "https://sv-reqres.now.sh/api/listings/";
 
-  // If the request was successful...
-  if (!error && response.statusCode === 200) {
+$(document).ready(function() {
+    
+  // Here we use jQuery to select the header with "click-me" as its ID.
+  // Notice that its #clickMe, click, and then the function
+  // So $("id|class|element").on("action", function(){});
+    console.log("script.js is running");
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(answer => {
+      var placeHold = 'https://via.placeholder.com/500x500';
+      var listings = answer.data;
+      for (var i = 0; i<6; i++){
+      var listing = answer.data[i]
 
-    // Then log the body from the site!
-    console.log(body);
-  }
-});
+      $(".img"+i).css("background-image", "url("+listing.mediaurl+")")
+      .on('load', function() { console.log("image loaded correctly"); })
+      .on('error', function(
+
+      ) { console.log("error loading image"); })
+      .css("background-image", "url("+placeHold+")");
+      console.log(listing.mediaurl)
+      
+      $(".fillHeader_"+i).text(listing.title);
+      $(".fillText_"+i).text(listing.description);
+      }
+    });
+  });
