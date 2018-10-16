@@ -16,12 +16,11 @@ $(document).ready(function() {
       var listing = answer.data[i]
 
       $(".img"+i).css("background-image", "url("+listing.mediaurl+")")
-      .on('load', function() { console.log("image loaded correctly"); })
-      .on('error', function(
-
-      ) { console.log("error loading image"); })
-      .css("background-image", "url("+placeHold+")");
+      // $(".img"+i).css("background-image", "url("+placeHold+")")
+      
       console.log(listing.mediaurl)
+
+      // if ()
       
       $(".fillHeader_"+i).text(listing.title);
       $(".fillText_"+i).text(listing.description);
